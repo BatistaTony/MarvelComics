@@ -2,7 +2,8 @@ import React from "react";
 import Quadrinhos from "./quadrinho";
 import "./styles/content.scss";
 import { connect } from "react-redux";
-import { seeQ } from "./store/actions.js/quadrinhos";
+import { seeQ, getMarvel } from "./store/actions.js/quadrinhos";
+import md5 from "js-md5";
 
 class Content extends React.Component {
   state = {
@@ -10,102 +11,6 @@ class Content extends React.Component {
       {
         id: 1,
         name: "Dog Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        id: 2,
-
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        id: 3,
-
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        id: 4,
-
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        id: 4,
-
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
-        thumbnail: {
-          path: "image",
-          extension: "png"
-        },
-        description: "Hello world, yes I did it face"
-      },
-      {
-        name: "Cao Man",
         thumbnail: {
           path: "image",
           extension: "png"
@@ -122,9 +27,23 @@ class Content extends React.Component {
     }
   };
 
-  // async componentDidMount() {
-  //   this.props.dispatch(await getMarvel());
-  // }
+  async componentDidMount() {
+    // this.props.dispatch(await getMarvel());
+    const PUBLIC_KEY = "71386610f059ad09953a084a3dc6a1a6";
+    const PRIVATE_KEY = "462df9eb996a92db3cbc369d899c2eacb8cf7a12";
+    const hash = await md5.create();
+    const timestamp = Number(new Date());
+
+    hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+    const marvel = await fetch(
+      `https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&orderBy=name&limit=50&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`
+    );
+
+    const res = await marvel.json()
+
+    this.setState({ quadrinhos: res.data.results})
+
+  }
 
   pesquisar = () => {
     let matches = this.state.quadrinhos.filter(q => {
@@ -132,7 +51,6 @@ class Content extends React.Component {
 
       return q.name.match(regExp);
     });
-    console.log(matches.length ? true : false);
     return matches.length ? matches : this.state.quadrinhos;
   };
 
