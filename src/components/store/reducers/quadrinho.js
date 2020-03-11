@@ -4,8 +4,8 @@ export default function quadrinho(state = 0, action) {
       return action.payload;
     }
 
-      default: {
-          return state
+    default: {
+      return state;
     }
   }
 }

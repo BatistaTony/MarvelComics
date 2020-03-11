@@ -116,11 +116,10 @@ class Content extends React.Component {
     ate: 10,
 
     quadrinho: {
-      name: '',
-      img: '',
-      description: ''
+      name: "",
+      img: "",
+      description: ""
     }
-
   };
 
   // async componentDidMount() {
@@ -145,8 +144,8 @@ class Content extends React.Component {
   };
 
   closeQ = () => {
-    this.props.dispatch(seeQ(0))
-  }
+    this.props.dispatch(seeQ(0));
+  };
 
   render() {
     return (
@@ -163,8 +162,8 @@ class Content extends React.Component {
               />
             ))}
         </ul>
-        
-        {this.props.state.quadrinho ?
+
+        {this.props.state.quadrinho ? (
           <div className="overlay">
             <div className="div_ov">
               <div className="item">
@@ -178,11 +177,13 @@ class Content extends React.Component {
                 />
                 <h1>{this.props.state.quadrinho.name}</h1>
                 <p>{this.props.state.quadrinho.description}</p>
-                <button className="btn_close" onClick={this.closeQ} >Fechar</button>
+                <button className="btn_close" onClick={this.closeQ}>
+                  Fechar
+                </button>
               </div>
             </div>
           </div>
-          : null}
+        ) : null}
 
         <div className="div_btn">
           <button onClick={this.verMais} className="btn_seeMore">
