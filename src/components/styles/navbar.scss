@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.Navbar {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(151, 66, 126);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    box-sizing: content-box;
+    //padding-left: 20px;
+    align-items: center;
+
+
+    h1 {
+        color: white;
+        font-family: Raleway;
+    }
+
+    .search_div {
+        width: 300px;
+        input {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+    }
+}
