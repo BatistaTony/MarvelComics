@@ -8,26 +8,84 @@
 .content {
   width: 100%;
   height: auto;
-//   background-color: rgb(247, 247, 247);
+  //   background-color: rgb(247, 247, 247);
   list-style: none;
   @include flexbox();
   padding-top: 2%;
   padding-bottom: 5%;
 }
 
+@mixin btnStyle {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(151, 66, 126);
+  color: white;
+  position: absolute;
+  outline: none;
+}
+
 .div_btn {
   @include flexbox();
   width: 100%;
-  margin-top: 20px; 
+  margin-top: 20px;
   padding-bottom: 10%;
   .btn_seeMore {
-    width: 100px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(151, 66, 126);
-    color: white;
-    position: absolute;
-    outline: none;
+    @include btnStyle();
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(53, 48, 48, 0.233);
+  position: fixed;
+
+  z-index: 1;
+  top: 0;
+  left: 0;
+  .div_ov {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    z-index: 9999999;
+
+    .item {
+      width: 300px;
+      height: auto;
+      background-color: white;
+      padding: 5%;
+      border-radius: 10px;
+
+      img {
+        width: 100%;
+        height: 40vh;
+        border-radius: 10px;
+      }
+
+      h1 {
+        margin-top: 20px;
+        font-size: 13pt;
+        font-family: Raleway;
+        color: black;
+      }
+
+      p {
+        @extend h1;
+        font-size: 10pt;
+        margin-top: 5px !important;
+        color: rgb(128, 98, 0);
+      }
+
+      .btn_close {
+        @include btnStyle();
+        height: 25px;
+        margin-top: 10px;
+      }
+    }
   }
 }

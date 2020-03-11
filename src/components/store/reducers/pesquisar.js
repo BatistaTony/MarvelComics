@@ -1,4 +1,4 @@
-const word = "";
+const word = " ";
 
 export default function pesquisar(state = word, action) {
   switch (action.type) {

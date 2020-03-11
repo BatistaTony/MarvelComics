@@ -7,6 +7,13 @@ export const FETCH_MARVEL_FAILURE = 'FETCH_MARVEL_FAILURE'
 
 export const FETCH_MARVEL_SUCESS = 'FETCH_MARVEL_SUCESS'
 
+export function seeQ(payload) {
+  return {
+    type: 'SEE_Q',
+    payload
+    }
+}
+
 
 export  function getMarvel(){
                               const PUBLIC_KEY  = '71386610f059ad09953a084a3dc6a1a6'
